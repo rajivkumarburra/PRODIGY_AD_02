@@ -76,7 +76,7 @@ class _AuthScreenState extends State<AuthScreen> {
             transform: GradientRotation(0.5 * 3.14),
           ),
         ),
-        padding: const EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.only(top: 150),
         child: Column(
           children: [
             const Text(
