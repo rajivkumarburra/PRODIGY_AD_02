@@ -1,4 +1,4 @@
-# AppDev-Task-3-TO-DO-App
+# To-Do App
 
 A To-Do App made using Flutter, Dart and Firebase.
 
