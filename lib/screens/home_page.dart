@@ -89,88 +89,117 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Theme.of(context).primaryColor,
-                            gradient: const LinearGradient(
-                              colors: [
-                                Color(0xFFBDC3C7),
-                                Color(0xFF2C3E50),
-                              ],
-                              tileMode: TileMode.clamp,
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                              stops: [0.0, 1.0],
-                              transform: GradientRotation(0.5 * 3.14),
-                            ),
+                      child: Dismissible(
+                        key: Key(documents[index]['title']),
+                        background: Container(
+                          alignment: Alignment.centerLeft,
+                          padding: const EdgeInsets.only(left: 20),
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.black,
                           ),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                TaskScreen.routeName,
-                                arguments: {
-                                  'title': documents[index]['title'],
-                                  'description': documents[index]
-                                      ['description'],
-                                  'date': documents[index]['date'],
-                                  'isDone': documents[index]['isDone'],
-                                },
-                              );
-                            },
-                            title: Text(
+                        ),
+                        direction: DismissDirection.startToEnd,
+                        onDismissed: (direction) {
+                          setState(() {
+                            ToDo.toggleDone(
+                              documents[index]['isDone'],
                               documents[index]['title'],
-                              style: const TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                            );
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Task complete!',
+                                textAlign: TextAlign.center,
+                              ),
+                              backgroundColor: Colors.black,
+                            ),
+                          );
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Theme.of(context).primaryColor,
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xFFBDC3C7),
+                                  Color(0xFF2C3E50),
+                                ],
+                                tileMode: TileMode.clamp,
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                stops: [0.0, 1.0],
+                                transform: GradientRotation(0.5 * 3.14),
                               ),
                             ),
-                            subtitle: Text(
-                              DateFormat.yMMMd().format(
-                                documents[index]['date'].toDate(),
-                              ),
-                              style: const TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                            trailing: Checkbox(
-                              side: const BorderSide(
-                                color: Colors.white,
-                                width: 2.5,
-                              ),
-                              checkColor: Colors.black,
-                              fillColor: MaterialStateProperty.all<Color>(
-                                Colors.white,
-                              ),
-                              shape: const CircleBorder(),
-                              value: documents[index]['isDone'],
-                              onChanged: (bool? value) {
-                                setState(
-                                  () {
-                                    ToDo.toggleDone(
-                                      documents[index]['isDone'],
-                                      documents[index]['title'],
-                                    );
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  TaskScreen.routeName,
+                                  arguments: {
+                                    'title': documents[index]['title'],
+                                    'description': documents[index]
+                                        ['description'],
+                                    'date': documents[index]['date'],
+                                    'isDone': documents[index]['isDone'],
                                   },
                                 );
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text(
-                                      'Task complete!',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    backgroundColor: Colors.black,
-                                  ),
-                                );
                               },
+                              title: Text(
+                                documents[index]['title'],
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              subtitle: Text(
+                                DateFormat.yMMMd().format(
+                                  documents[index]['date'].toDate(),
+                                ),
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              // trailing: Checkbox(
+                              //   side: const BorderSide(
+                              //     color: Colors.white,
+                              //     width: 2.5,
+                              //   ),
+                              //   checkColor: Colors.black,
+                              //   fillColor: MaterialStateProperty.all<Color>(
+                              //     Colors.white,
+                              //   ),
+                              //   shape: const CircleBorder(),
+                              //   value: documents[index]['isDone'],
+                              //   onChanged: (bool? value) {
+                              //     setState(
+                              //       () {
+                              //         ToDo.toggleDone(
+                              //           documents[index]['isDone'],
+                              //           documents[index]['title'],
+                              //         );
+                              //       },
+                              //     );
+                              //     ScaffoldMessenger.of(context).showSnackBar(
+                              //       const SnackBar(
+                              //         content: Text(
+                              //           'Task complete!',
+                              //           textAlign: TextAlign.center,
+                              //           style: TextStyle(
+                              //             color: Colors.white,
+                              //           ),
+                              //         ),
+                              //         backgroundColor: Colors.black,
+                              //       ),
+                              //     );
+                              //   },
+                              // ),
                             ),
                           ),
                         ),

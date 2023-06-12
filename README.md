@@ -6,4 +6,4 @@ A To-Do App made using Flutter, Dart and Firebase.
 
 This project is my third submission towards my interniship with Oasis Infobyte.
 
-This app is a To-Do app which allows users to add tasks, mark them as complete and delete them. The app also allows users to sign in using their email and password and stores their tasks in a Firebase database. The app also allows users to sign out.
+This app is a To-Do app which allows users to add tasks and swipe the from left to right once the task is complete to delete the task. The app also allows users to sign in using their email and password and stores their tasks in a Firebase database. The app also allows users to sign out.
