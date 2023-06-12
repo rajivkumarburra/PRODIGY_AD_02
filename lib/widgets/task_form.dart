@@ -189,7 +189,7 @@ class _TaskFormState extends State<TaskForm> {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text(
-                      'Task added successfully',
+                      'Task added successfully.',
                       style: TextStyle(
                         color: Colors.white,
                       ),
