@@ -150,20 +150,48 @@ class _HomePageState extends State<HomePage> {
                                   },
                                 );
                               },
-                              title: Text(
-                                documents[index]['title'],
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                              title: TweenAnimationBuilder(
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: 1,
+                                ),
+                                duration: const Duration(milliseconds: 1000),
+                                builder: (BuildContext context, double value,
+                                    Widget? child) {
+                                  return Opacity(
+                                    opacity: value,
+                                    child: child,
+                                  );
+                                },
+                                child: Text(
+                                  documents[index]['title'],
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                              subtitle: Text(
-                                DateFormat.yMMMd().format(
-                                  documents[index]['date'].toDate(),
+                              subtitle: TweenAnimationBuilder(
+                                tween: Tween<double>(
+                                  begin: 0,
+                                  end: 1,
                                 ),
-                                style: const TextStyle(
-                                  color: Colors.white,
+                                duration: const Duration(milliseconds: 1000),
+                                builder: (BuildContext context, double value,
+                                    Widget? child) {
+                                  return Opacity(
+                                    opacity: value,
+                                    child: child,
+                                  );
+                                },
+                                child: Text(
+                                  DateFormat.yMMMd().format(
+                                    documents[index]['date'].toDate(),
+                                  ),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                               // trailing: Checkbox(
